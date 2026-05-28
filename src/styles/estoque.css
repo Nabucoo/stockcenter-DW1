@@ -1,0 +1,149 @@
+:root {
+
+    /* Azul principal */
+    --primary-color: #1E293B;
+
+    /* Cor de destaque */
+    --secondary-color: #F59E0B;
+
+    --alert-color: #dc3545;
+
+    /* Fundo da aplicação */
+    --background-color: #F8FAFC;
+
+    /* Fundo de cards */
+    --surface-color: #FFFFFF;
+
+    /* Texto principal */
+    --text-color: #0F172A;
+
+    /* Texto secundário */
+    --text-light: #FFFFFF;
+
+    /* Bordas */
+    --border-color: #E2E8F0;
+
+    /* Sombra leve */
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+
+    /* Sombra média */
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.08);
+
+    /* Transição padrão */
+    --transition-default: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--text-light);
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+
+}
+
+.navbar-brand:hover {
+    color: var(--text-light);
+}
+
+.nav-link.active{
+    color: var(--secondary-color) !important;
+}
+
+[class*="btn"]{
+    padding: 12px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-add, .btn-edit, .btn-search{
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+.btn-sair {
+    background-color: var(--alert-color);
+    color: var(--text-light);
+}
+
+.estoque-page{
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.estoque-page h1{
+    margin-bottom: 1.6rem;
+    color: var(--text-color);
+}
+
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+.search-area{
+    display: flex;
+    gap: 1rem;
+}
+
+.search-area input{
+    width: 25rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.8rem;
+    outline: none;
+    box-shadow:var(--shadow-sm);
+}
+
+
+.tabela-container{
+    background-color: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.tabela-produtos{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-produtos th{
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 1.2rem;
+    text-align: left;
+}
+
+.tabela-produtos td{
+    padding: 1.2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+
+
