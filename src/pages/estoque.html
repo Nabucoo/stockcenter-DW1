@@ -48,7 +48,7 @@
 
     <div class="toolbar">
         <div class="search-area">
-            <input type="text" placeholder="Buscar produto...">
+            <input id="search-input" type="text" placeholder="Buscar produto...">
             <button class="btn-search">
                 Pesquisar
             </button>
@@ -59,22 +59,8 @@
         </button>
     </div>
 
-    <section class="tabela-container">
-        <table class="tabela-produtos">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Produto</th>
-                    <th>Categoria</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody id="tabela">
-            </tbody>
-        </table>
+    <section class="cards">
+        
     </section>
 
 </main>
@@ -99,66 +85,60 @@
                     <form id="form-produto">
 
                         <div class="mb-3">
-                            <label class="form-label">Nome</label>
+                            <label class="form-label" for="nome">Nome</label>
                             <input 
                                 type="text" 
                                 class="form-control" 
                                 id="nome"
+                                name="nome"
                                 required
                             >
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Quantidade</label>
+                            <label class="form-label" for="quantidade">Quantidade</label>
                             <input 
                                 type="number" 
                                 class="form-control" 
                                 id="quantidade"
+                                name="quantidade"
                                 required
                             >
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Preço de Compra</label>
+                            <label class="form-label" for="preco_compra">Preço de Compra</label>
                             <input 
                                 type="number" 
                                 step="0.01"
                                 class="form-control" 
                                 id="preco_compra"
+                                name="preco_compra"
                                 required
                             >
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Preço de Venda</label>
+                            <label class="form-label" for="preco_venda">Preço de Venda</label>
                             <input 
                                 type="number" 
                                 step="0.01"
                                 class="form-control" 
                                 id="preco_venda"
+                                name="preco_venda"
                                 required
                             >
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Caminho</label>
+                            <label class="form-label" for="departamento">Departamento</label>
                             <input 
                                 type="text" 
+                                step="0.01"
                                 class="form-control" 
-                                id="caminho"
-                                required
+                                id="departamento"
+                                name="departamento"
                             >
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Departamento</label>
-
-                            <select class="form-select" id="departamento">
-                                <option value="Eletrônicos">Bebidas Alcoólicas</option>
-                                <option value="Roupas">Refrigerantes</option>
-                                <option value="Alimentos">Alimentos</option>
-                                <option value="Outros">Outros</option>
-                            </select>
                         </div>
 
                         <div class="form-check">
@@ -166,16 +146,14 @@
                                 class="form-check-input" 
                                 type="checkbox" 
                                 id="ativo"
+                                name="ativo"
                                 checked
                             >
 
-                            <label class="form-check-label">
+                            <label class="form-check-label" for="ativo">
                                 Produto Ativo
                             </label>
                         </div>
-
-                    </form>
-
                 </div>
 
                 <div class="modal-footer">
@@ -187,17 +165,16 @@
                     </button>
 
                     <button 
-                        type="button" 
-                        class="btn-add"
-                        onclick="adicionarProduto()">
+                        type="submit" 
+                        class="btn-add">
                         Adicionar produto
                     </button>
                 </div>
-
+                    </form>
             </div>
         </div>
     </div> 
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/estoque.js"></script>
+    <script defer type="module" src="../scripts/estoque.js"></script>
   </body>
 </html>

@@ -99,6 +99,7 @@ body {
 }
 
 .toolbar{
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -108,10 +109,12 @@ body {
 
 .search-area{
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
 .search-area input{
+    max-width: 80vw;
     width: 25rem;
     padding: 1rem;
     border: 1px solid var(--border-color);
@@ -120,30 +123,17 @@ body {
     box-shadow:var(--shadow-sm);
 }
 
-
-.tabela-container{
-    background-color: white;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-}
-
-.tabela-produtos{
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.tabela-produtos th{
+.card-header {
     background-color: var(--primary-color);
+}
+
+.card-title {
     color: var(--text-light);
-    padding: 1.2rem;
-    text-align: left;
+    font-weight: bold;
 }
 
-.tabela-produtos td{
-    padding: 1.2rem;
-    border-bottom: 1px solid #ddd;
+.card-body {
+    background-color: var(--surface-color);
 }
-
 
 

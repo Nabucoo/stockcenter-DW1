@@ -1,69 +1,139 @@
-/*
-<tr>
-    <td>1</td>
-    <td>Mouse Gamer</td>
-    <td>Periféricos</td>
-    <td>15</td>
-    <td>R$ 120,00</td>
-    <td>
-        <button class="btn-edit">
-            Editar
-        </button>
-    </td>
-</tr>
-*/
+import { Produto } from "./produto.js";
+import { Storage } from "../storage/storage.js";
 
-const tabela = document.getElementById("tabela");
+const storage = new Storage();
 
-let contadorId = 1;
+// função que valida os inputs
+// true -> validação bem-sucedida
+// false -> validação mal-sucedida
+function validarProduto(nome, quantidade, precoCompra, precoVenda) {
+    if (!nome) {
+        alert("O nome do produto é obrigatório.");
+        return false;
+    }
 
-function adicionarProduto() {
+    if (quantidade < 0 || isNaN(quantidade)) {
+        alert("A quantidade não pode ser negativa.");
+        return false;
+    }
 
-    const nome = document.getElementById("nome").value;
-    const quantidade = document.getElementById("quantidade").value;
-    const precoVenda = document.getElementById("preco_venda").value;
-    const departamento = document.getElementById("departamento").value;
+    if (precoCompra < 0 || isNaN(precoCompra)) {
+        alert("O preço de compra é inválido.");
+        return false;
+    }
 
-    tabela.innerHTML += `
-        <tr>
+    if (precoVenda < 0 || isNaN(precoVenda)) {
+        alert("O preço de venda é inválido.");
+        return false;
+    }
 
-            <td>${contadorId}</td>
+    const produtos = storage.carregarProdutos();
 
-            <td>${nome}</td>
+    const produtoExistente = produtos.find(
+        produto => produto.nome.toLowerCase() === nome.toLowerCase()
+    );
 
-            <td>${departamento}</td>
+    if (produtoExistente) {
+        alert("Já existe um produto com esse nome.");
+        return false;
+    }
 
-            <td>${quantidade}</td>
+    return true;
+}
 
-            <td>R$ ${precoVenda}</td>
+// função que renderiza os cards de produtos, toda atualizacao na lista de produtos, chamara essa função, para atualizar a renderização
+function renderizarProdutos() {
+    const produtos = storage.carregarProdutos();
 
-            <td>
+    const cards = document.querySelector(".cards")
 
-                <button class="btn btn-warning btn-sm">
-                    Editar
-                </button>
+    cards.innerHTML = "";
 
-                <button class="btn btn-danger btn-sm">
-                    Remover
-                </button>
+    produtos.forEach(produto => {
+        cards.innerHTML += `
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">${produto.nome}</h5>
+                </div>
 
-            </td>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            Nome: ${produto.nome}
+                        </li>
 
-        </tr>
-    `;
+                        <li class="list-group-item">
+                            Quantidade: ${produto.quantidade}
+                        </li>
 
-    contadorId++;
+                        <li class="list-group-item">
+                            Preço de compra: R$ ${produto.precoCompra}
+                        </li>
 
+                        <li class="list-group-item">
+                            Preço de venda: R$ ${produto.precoVenda}
+                        </li>
+
+                        <li class="list-group-item">
+                            Departamento: ${produto.departamento}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body d-flex justify-content-end gap-2">
+                    <button type="button" class="btn-sair">
+                        ✏️ Editar
+                    </button>
+
+                    <button type="button" class="btn-add">
+                        🗑️ Remover
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+//funcao que adiciona produto, faz verificação, adiciona no localStorage e renderiza
+function adicionarProduto(form) {
+    const dados = Object.fromEntries(new FormData(form));
+
+    const nome = dados.nome?.trim();
+    const quantidade = Number(dados.quantidade);
+    const precoCompra = Number(dados.preco_compra);
+    const precoVenda = Number(dados.preco_venda);
+    const departamento = dados.departamento?.trim();
+    const ativo = document.getElementById("ativo").checked;
+
+    if (!validarProduto(nome, quantidade, precoCompra, precoVenda)) {
+        return;
+    }
+    const novoProduto = new Produto(
+        nome,
+        quantidade,
+        precoCompra,
+        precoVenda,
+        departamento,
+        ativo
+    );
+
+    storage.adicionarProduto(novoProduto);
+
+    console.log(storage.carregarProdutos());
+    renderizarProdutos();
     limparFormulario();
 }
 
-function limparFormulario() {
 
-    document.getElementById("nome").value = "";
-    document.getElementById("quantidade").value = "";
-    document.getElementById("preco_compra").value = "";
-    document.getElementById("preco_venda").value = "";
-    document.getElementById("caminho").value = "";
-    document.getElementById("departamento").selectedIndex = 0;
-    document.getElementById("ativo").checked = true;
+function limparFormulario() {
+    document.getElementById("form-produto").reset();
 }
+
+const form = document.getElementById("form-produto");
+
+
+//formulario de adicionar produto acionado!
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    adicionarProduto(form);
+});
