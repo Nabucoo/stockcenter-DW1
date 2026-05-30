@@ -65,6 +65,47 @@
 
 </main>
 
+    <div class="modal fade" id="modal-remover-produto" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">Remover Produto</h1>
+                    <button 
+                        type="button" 
+                        class="btn-close" 
+                        data-bs-dismiss="modal" 
+                        aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-remover-produto">
+                        <div class="mb-3">
+                            <label for="">Quantidade: </label>
+                            <input type="hidden" name="nomeProduto" id="nome-produto">
+                            <input type="number" id="quantidade-remover" class="form-control" name="quantidadeRemover" required >
+                        </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button 
+                        type="button" 
+                        class="btn-sair" 
+                        data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+                    <button 
+                        type="submit" 
+                        class="btn-sair">
+                        Remover produto
+                    </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="modal-adicionar-produto" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -82,7 +123,7 @@
 
                 <div class="modal-body">
 
-                    <form id="form-produto">
+                    <form id="form-adicionar-produto">
 
                         <div class="mb-3">
                             <label class="form-label" for="nome">Nome</label>
@@ -175,6 +216,6 @@
         </div>
     </div> 
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script defer type="module" src="../scripts/estoque.js"></script>
+    <script defer type="module" src="../scripts/estoque/estoque.js"></script>
   </body>
 </html>

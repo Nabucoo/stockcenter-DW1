@@ -32,4 +32,23 @@ export class Storage {
             JSON.stringify(produtos)
         );
     }
+
+    removerProduto(nome, quantidadeRemover) {
+        const produtos = this.carregarProdutos();
+
+        const indice = produtos.findIndex(
+            produto => produto.nome.toLowerCase() === nome.toLowerCase()
+        );
+
+        produtos[indice].quantidade -= quantidadeRemover;
+
+        if (produtos[indice].quantidade === 0) {
+            produtos.splice(indice, 1);
+        }
+
+        localStorage.setItem(
+            "produtos",
+            JSON.stringify(produtos)
+        );
+    }
 }

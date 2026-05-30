@@ -123,6 +123,10 @@ body {
     box-shadow:var(--shadow-sm);
 }
 
+.card {
+    margin: 1rem
+}
+
 .card-header {
     background-color: var(--primary-color);
 }
