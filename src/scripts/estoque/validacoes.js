@@ -68,3 +68,41 @@ export function validarRemocao(nome, quantidadeRemover) {
 
     return true;
 }
+
+export function validarEdicao(nomeAntigo, nomeNovo, quantidadeNova, precoCompraNovo, precoVendaNovo) {
+    if (!nomeNovo) {
+        alert("O nome do produto é obrigatório.");
+        return false;
+    }
+
+    if (quantidadeNova < 0 || isNaN(quantidadeNova)) {
+        alert("A quantidade não pode ser negativa.");
+        return false;
+    }
+
+    if (precoCompraNovo < 0 || isNaN(precoCompraNovo)) {
+        alert("O preço de compra é inválido.");
+        return false;
+    }
+
+    if (precoVendaNovo < 0 || isNaN(precoVendaNovo)) {
+        alert("O preço de venda é inválido.");
+        return false;
+    }
+
+    const storage = new Storage();
+    const produtos = storage.carregarProdutos();
+
+    const produtoExistente = produtos.find(
+        produto =>
+            produto.nome.toLowerCase() === nomeNovo.toLowerCase() &&
+            produto.nome.toLowerCase() !== nomeAntigo.toLowerCase()
+    );
+
+    if (produtoExistente) {
+        alert("Já existe um produto com esse nome.");
+        return false;
+    }
+
+    return true;
+}

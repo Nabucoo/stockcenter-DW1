@@ -51,4 +51,24 @@ export class Storage {
             JSON.stringify(produtos)
         );
     }
+
+    editarProduto(nomeAntigo, nomeNovo, quantidadeNova, precoCompraNovo, precoVendaNovo, departamentoNovo) {
+        const produtos = this.carregarProdutos();
+
+        const indice = produtos.findIndex(
+            produto => produto.nome.toLowerCase() === nomeAntigo.toLowerCase()
+        );
+
+        produtos[indice].nome = nomeNovo;
+        produtos[indice].quantidade = quantidadeNova;
+        produtos[indice].precoCompra = precoCompraNovo;
+        produtos[indice].precoVenda = precoVendaNovo;
+        produtos[indice].departamento = departamentoNovo;
+
+        localStorage.setItem(
+            "produtos",
+            JSON.stringify(produtos)
+        );
+    }
 }
+

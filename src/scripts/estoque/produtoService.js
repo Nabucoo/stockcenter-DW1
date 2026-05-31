@@ -1,11 +1,11 @@
 import { renderizarProdutos } from "./renderizar";
-import { validarProduto, validarRemocao } from "./validacoes";
+import { validarProduto, validarRemocao, validarEdicao } from "./validacoes";
 import { Storage } from "../../storage/storage";
 import { Produto } from "../produto";
 //funcao que adiciona produto, faz verificação, adiciona no localStorage e renderiza
 
-export function limparFormulario(id) {
-    document.getElementById(id).reset();
+export function limparFormulario(form) {
+    form.reset();
 }
 
 
@@ -35,7 +35,10 @@ export function adicionarProduto(form) {
 
     console.log(storage.carregarProdutos());
     renderizarProdutos();
-    limparFormulario("form-adicionar-produto");
+
+    const modalAdicionarProduto = document.querySelector("#modal-adicionar-produto");
+    bootstrap.Modal.getInstance(modalAdicionarProduto).hide();
+    limparFormulario(form);
 }
 
 export function removerProduto(form) {
@@ -50,5 +53,33 @@ export function removerProduto(form) {
     const storage = new Storage();
     storage.removerProduto(nome, quantidadeRemover)
     renderizarProdutos();
-    limparFormulario("form-remover-produto");
+
+    const modalRemoverProduto = document.querySelector("#modal-remover-produto");
+    bootstrap.Modal.getInstance(modalRemoverProduto).hide();
+    limparFormulario(form);
+}
+
+export function editarProduto(form) {
+    const dados = Object.fromEntries(new FormData(form));
+
+    const nomeAntigo = dados.nomeProduto;
+    const nomeNovo = dados.novoNome?.trim();
+    const quantidadeNova = Number(dados.novaQuantidade);
+    const precoCompraNovo = Number(dados.novoPrecoCompra);
+    const precoVendaNovo = Number(dados.novoPrecoVenda);
+    const departamentoNovo = dados.novoDepartamento?.trim();
+    const ativoNovo = dados.novoAtivo === "on";
+
+    if (!validarEdicao(nomeAntigo, nomeNovo, quantidadeNova, precoCompraNovo, precoVendaNovo)) {
+        return;
+    }
+
+    const storage = new Storage();
+    storage.editarProduto(nomeAntigo, nomeNovo, quantidadeNova, precoCompraNovo, precoVendaNovo, departamentoNovo);
+    renderizarProdutos();
+
+    const modalEditarProduto = document.querySelector("#modal-editar-produto");
+    bootstrap.Modal.getInstance(modalEditarProduto).hide();
+    limparFormulario(form);
+    
 }

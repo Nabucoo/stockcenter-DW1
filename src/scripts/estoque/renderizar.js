@@ -38,11 +38,11 @@ export function renderizarProdutos() {
                 </div>
 
                 <div class="card-body d-flex justify-content-end gap-2">
-                    <button type="button" class="btn-add" data-produto="${produto.nome}">
+                    <button type="button" class="btn-add abrirModalEditar" data-bs-toggle="modal" data-bs-target="#modal-editar-produto" data-produto='${JSON.stringify(produto)}'>
                         ✏️ Editar
                     </button>
 
-                    <button type="button" class="btn-sair sair" data-bs-toggle="modal" data-bs-target="#modal-remover-produto" data-produto="${produto.nome}">
+                    <button type="button" class="btn-sair abrirModalRemover" data-bs-toggle="modal" data-bs-target="#modal-remover-produto" data-produto='${JSON.stringify(produto)}'>
                         🗑️ Remover
                     </button>
                 </div>
