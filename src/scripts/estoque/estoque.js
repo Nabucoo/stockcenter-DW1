@@ -1,6 +1,6 @@
 import { Produto } from "../produto.js";
 import { Storage } from "../../storage/storage.js";
-import { adicionarProduto, editarProduto, removerProduto } from "./produtoService.js";
+import { adicionarProduto, buscarProduto, editarProduto, removerProduto } from "./produtoService.js";
 import { renderizarProdutos } from "./renderizar.js";
 
 window.addEventListener("load", renderizarProdutos);
@@ -11,6 +11,7 @@ const storage = new Storage();
 const formAdicionar = document.getElementById("form-adicionar-produto");
 const formRemover = document.getElementById("form-remover-produto");
 const formEditar = document.getElementById("form-editar-produto");
+const formBuscar = document.getElementById("form-buscar-produto");
 
 //passar o identificador do produto, para poder remove-lo
 document.addEventListener("click", (e) => {
@@ -47,7 +48,7 @@ formAdicionar.addEventListener("submit", (e) => {
 //formulario de remover produto acionado!
 formRemover.addEventListener("submit", (e) => {
     e.preventDefault();
-    removerProduto(formRemover)
+    removerProduto(formRemover);
 
 })
 
@@ -56,6 +57,11 @@ formEditar.addEventListener("submit", (e) => {
     e.preventDefault();
     editarProduto(formEditar);
 
+})
+
+formBuscar.addEventListener("submit", (e) => {
+    e.preventDefault();
+    buscarProduto(formBuscar);
 })
 
 

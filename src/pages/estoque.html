@@ -61,17 +61,20 @@
       <main class="estoque-page">
         <h1>Controle de Estoque</h1>
 
-        <div class="toolbar">
-          <div class="search-area">
-            <input
-              id="search-input"
-              type="text"
-              placeholder="Buscar produto..."
-            />
+        <form id="form-buscar-produto">
+          <div class="toolbar">
+            <div class="search-area">
+              <input
+                id="nome-buscar"
+                name="nome-buscar"
+                type="text"
+                placeholder="Buscar produto..."
+              />
 
-            <button class="btn-search">
-              Pesquisar
-            </button>
+              <button type="submit" class="btn-search">
+                Pesquisar
+              </button>
+          </form>
           </div>
 
           <button
@@ -83,7 +86,8 @@
           </button>
         </div>
 
-        <section class="cards"></section>
+        <section class="cards">
+        </section>
       </main>
     </div>
 

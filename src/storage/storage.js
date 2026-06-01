@@ -1,3 +1,5 @@
+
+
 export class Storage {
     static instancia = null;
 
@@ -69,6 +71,11 @@ export class Storage {
             "produtos",
             JSON.stringify(produtos)
         );
+    }
+
+    buscarProduto(nome) {
+        const produtos = this.carregarProdutos();
+        return produtos.find(produto => produto.nome.toLowerCase().trim() === nome.toLowerCase().trim());
     }
 }
 

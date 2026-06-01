@@ -1,4 +1,4 @@
-import { renderizarProdutos } from "./renderizar";
+import { renderizarProdutoBuscado, renderizarProdutos } from "./renderizar";
 import { validarProduto, validarRemocao, validarEdicao } from "./validacoes";
 import { Storage } from "../../storage/storage";
 import { Produto } from "../produto";
@@ -7,7 +7,6 @@ import { Produto } from "../produto";
 export function limparFormulario(form) {
     form.reset();
 }
-
 
 export function adicionarProduto(form) {
     const dados = Object.fromEntries(new FormData(form));
@@ -81,5 +80,24 @@ export function editarProduto(form) {
     const modalEditarProduto = document.querySelector("#modal-editar-produto");
     bootstrap.Modal.getInstance(modalEditarProduto).hide();
     limparFormulario(form);
-    
+}
+
+export function buscarProduto(form) {
+    const dados = new FormData(form);
+    const nome = dados.get("nome-buscar");
+
+    const storage = new Storage();
+
+    const produto = storage.buscarProduto(nome);
+
+    console.log(produto);
+
+    if (produto) {
+        renderizarProdutoBuscado(produto);
+    } else {
+        alert("Produto não encontrado");
+        renderizarProdutos();
+    }
+
+
 }
