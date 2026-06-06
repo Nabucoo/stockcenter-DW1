@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../styles/vendas.css">
+    <title>stockcenter</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+
+            <a class="navbar-brand d-flex align-items-center gap-2" href="../../index.html">
+              <img src="../assets/logo.png" alt="Logo" width="100">
+              <h1>StockCenter</h1>
+            </a>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="../../index.html">Inicio</a>
+                <a class="nav-link" href="./estoque.html">Estoque</a>
+                <a class="nav-link active" aria-current="page" href="./vendas.html">Vendas</a>
+                <a class="nav-link" href="./dashboard.html">Dashboard</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="vendas-page">
+        <div class="vendas-header">
+          <h1>Produtos</h1>
+
+          <button
+            type="button"
+            class="btn-add"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-adicionar-produto-venda"
+          >
+            + Adicionar Produto
+          </button>
+        </div>
+
+        <section class="cards"></section>
+
+        <div class="vendas-footer">
+          <p id="valor-final">Valor final: R$ 0,00</p>
+
+          <div class="action-buttons">
+            <button
+              type="button"
+              id="btn-limpar-venda"
+              class="btn-sair"
+            >
+              Limpar
+            </button>
+
+            <button
+              type="button"
+              id="btn-finalizar-venda"
+              class="btn-add"
+            >
+              + Adicionar Venda
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modal-adicionar-produto-venda"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="form-adicionar-produto-venda">
+            <div class="modal-header">
+              <h1 class="modal-title">Adicionar Produto</h1>
+
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label" for="produto-venda">Produto</label>
+
+                <select
+                  class="form-select"
+                  id="produto-venda"
+                  name="produtoVenda"
+                  required
+                >
+                  <option value="">Selecione um produto</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="quantidade-venda">
+                  Quantidade
+                </label>
+
+                <input
+                  type="number"
+                  class="form-control"
+                  id="quantidade-venda"
+                  name="quantidadeVenda"
+                  min="1"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn-sair"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="submit"
+                class="btn-add"
+              >
+                Confirmar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script defer src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer type="module" src="../scripts/vendas/vendas.js"></script>
+  </body>
+</html>
