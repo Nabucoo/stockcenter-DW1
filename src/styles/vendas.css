@@ -129,13 +129,24 @@ body {
     border-radius: 1rem;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
     overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.venda-vazia {
+    width: 100%;
+    margin: auto;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    text-align: center;
 }
 
 .vendas-footer {
     text-align: center;
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     padding: 1.5rem;
 }
 
@@ -145,5 +156,6 @@ body {
 
 .action-buttons {
     background-color: var(--background-color);
+    display: flex;
     gap: 3rem;
 }
