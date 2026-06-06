@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./src/styles/colors.css">
+    <link rel="stylesheet" href="./src/styles/index.css">
+    <script defer src="./src/scripts/index.js"></script>
+    <title>stockcenter</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+
+            <a class="navbar-brand d-flex align-items-center gap-2" href="./index.html">
+              <img src="./src/assets/logo.png" alt="Logo" width="100">
+              <h1 id="title">StockCenter</h1>
+            </a>
+
+            <button 
+              class="navbar-toggler" 
+              type="button" 
+              data-bs-toggle="collapse" 
+              data-bs-target="#navbarNavAltMarkup" 
+              aria-controls="navbarNavAltMarkup" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav ms-auto">
+                <a class="nav-link active" aria-current="page" href="./index.html">Início</a>
+                <a class="nav-link" href="./src/pages/estoque.html">Estoque</a>
+                <a class="nav-link" href="./src/pages/vendas.html">Vendas</a>
+                <a class="nav-link" href="./src/pages/dashboard.html">Dashboard</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <div id="estoque-card" class="card w-100" style="width: 18rem;">
+          <img src="./src/assets/estoque.png" class="card-img-top" alt="Estoque">
+          <div class="card-body">
+            <p class="card-text">Controle total das suas mercadorias em tempo real. Esta área permite acompanhar os níveis de produtos, gerenciar entradas e saídas, organizar o armazenamento e garantir que o seu negócio nunca sofra com a falta de itens essenciais ou com excessos desnecessários.</p>
+          </div>
+        </div>
+
+        <div id="vendas-card" class="card w-100" style="width: 18rem;">
+          <img src="./src/assets/vendas.png" class="card-img-top" alt="Estoque">
+          <div class="card-body">
+            <p class="card-text">O motor comercial do seu negócio. Uma interface dinâmica e ágil projetada para registrar transações de forma rápida, processar pagamentos, emitir comprovantes e garantir que a jornada de compra do cliente seja concluída com eficiência e segurança.</p>
+          </div>
+
+        </div>
+
+        <div id="dashboard-card" class="card w-100" style="width: 18rem;">
+          <img src="./src/assets/dashboard.png" class="card-img-top" alt="Estoque">
+          <div class="card-body">
+            <p class="card-text">A mente estratégica do sistema. Centraliza os indicadores mais importantes de vendas e estoque em gráficos e painéis visuais de fácil leitura. Ideal para monitorar o desempenho do negócio, identificar tendências e apoiar tomadas de decisão rápidas e precisas.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

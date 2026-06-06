@@ -1,0 +1,149 @@
+:root {
+
+    /* Azul principal */
+    --primary-color: #1E293B;
+
+    /* Cor de destaque */
+    --secondary-color: #F59E0B;
+
+    --alert-color: #dc3545;
+
+    /* Fundo da aplicação */
+    --background-color: #F8FAFC;
+
+    /* Fundo de cards */
+    --surface-color: #FFFFFF;
+
+    /* Texto principal */
+    --text-color: #0F172A;
+
+    /* Texto secundário */
+    --text-light: #FFFFFF;
+
+    /* Bordas */
+    --border-color: #E2E8F0;
+
+    /* Sombra leve */
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+
+    /* Sombra média */
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.08);
+
+    /* Transição padrão */
+    --transition-default: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--text-light);
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+
+}
+
+.navbar-brand:hover {
+    color: var(--text-light);
+}
+
+.nav-link.active{
+    color: var(--secondary-color) !important;
+}
+
+[class*="btn"]{
+    padding: 12px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-add, .btn-edit, .btn-search{
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+.btn-sair {
+    background-color: var(--alert-color);
+    color: var(--text-light);
+}
+
+.vendas-page{
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.vendas-page h1{
+    color: var(--text-color);
+    text-align: center;
+}
+
+.vendas-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+    align-items: center;
+}
+
+.card {
+    margin: 1rem;
+    width: 100%
+}
+
+.card-header {
+    background-color: var(--primary-color);
+}
+
+.card-title {
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+.card-body {
+    background-color: var(--surface-color);
+}
+
+.cards {
+    height: 60vh;
+    border: var(--secondary-color) 4px solid;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.vendas-footer {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.vendas-footer p {
+    font-size: 2rem;
+}
+
+.action-buttons {
+    background-color: var(--background-color);
+    gap: 3rem;
+}
