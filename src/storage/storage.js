@@ -1,5 +1,3 @@
-
-
 export class Storage {
     static instancia = null;
 
@@ -11,6 +9,13 @@ export class Storage {
         if (!localStorage.getItem("produtos")) {
             localStorage.setItem(
                 "produtos",
+                JSON.stringify([])
+            );
+        }
+
+        if (!localStorage.getItem("vendas")) {
+            localStorage.setItem(
+                "vendas",
                 JSON.stringify([])
             );
         }
@@ -77,5 +82,21 @@ export class Storage {
         const produtos = this.carregarProdutos();
         return produtos.find(produto => produto.nome.toLowerCase().trim() === nome.toLowerCase().trim());
     }
-}
 
+    carregarVendas() {
+        return JSON.parse(
+            localStorage.getItem("vendas")
+        );
+    }
+
+    adicionarVenda(venda) {
+        const vendas = this.carregarVendas();
+
+        vendas.push(venda);
+
+        localStorage.setItem(
+            "vendas",
+            JSON.stringify(vendas)
+        );
+    }
+}

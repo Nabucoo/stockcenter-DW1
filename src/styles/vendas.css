@@ -103,6 +103,7 @@ body {
     justify-content: space-between;
     margin: 2rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -148,6 +149,7 @@ body {
     justify-content: space-between;
     gap: 1rem;
     padding: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .vendas-footer p {
@@ -159,3 +161,5 @@ body {
     display: flex;
     gap: 3rem;
 }
+
+

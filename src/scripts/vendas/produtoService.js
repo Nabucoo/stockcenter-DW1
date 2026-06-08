@@ -1,5 +1,6 @@
 import { Storage } from "../../storage/storage.js";
-import { renderizarItensVenda } from "./renderizar.js";
+import { Venda } from "./venda.js";
+import { calcularTotal, renderizarItensVenda } from "./renderizar.js";
 import { validarFinalizacaoVenda, validarProdutoVenda } from "./validacoes.js";
 
 export function adicionarProdutoVenda(nome, quantidade, itensVenda) {
@@ -20,6 +21,7 @@ export function adicionarProdutoVenda(nome, quantidade, itensVenda) {
         itensVenda.push({
             nome: produto.nome,
             quantidade,
+            precoCompra: Number(produto.precoCompra),
             precoVenda: Number(produto.precoVenda)
         });
     }
@@ -48,10 +50,24 @@ export function finalizarVenda(itensVenda) {
     }
 
     const storage = new Storage();
+    const itens = itensVenda.map(item => ({
+        nome: item.nome,
+        quantidade: item.quantidade,
+        precoCompra: item.precoCompra,
+        precoVenda: item.precoVenda,
+        subtotal: item.quantidade * item.precoVenda
+    }));
+
+    const venda = new Venda(
+        itens,
+        calcularTotal(itensVenda)
+    );
 
     itensVenda.forEach(item => {
         storage.removerProduto(item.nome, item.quantidade);
     });
+
+    storage.adicionarVenda(venda);
 
     alert("Venda adicionada com sucesso.");
     limparVenda(itensVenda);

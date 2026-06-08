@@ -49,8 +49,11 @@ botaoLimparVenda.addEventListener("click", () => {
 });
 
 botaoFinalizarVenda.addEventListener("click", () => {
+    
     if (finalizarVenda(itensVenda)) {
+        
         carregarProdutosDisponiveis(selectProduto);
+        
     }
 });
 
