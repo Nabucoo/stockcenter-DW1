@@ -1,0 +1,117 @@
+:root {
+
+    /* Azul principal */
+    --primary-color: #1E293B;
+
+    /* Cor de destaque */
+    --secondary-color: #F59E0B;
+
+    --alert-color: #dc3545;
+
+    /* Fundo da aplicação */
+    --background-color: #F8FAFC;
+
+    /* Fundo de cards */
+    --surface-color: #FFFFFF;
+
+    /* Texto principal */
+    --text-color: #0F172A;
+
+    /* Texto secundário */
+    --text-light: #FFFFFF;
+
+    /* Bordas */
+    --border-color: #E2E8F0;
+
+    /* Sombra leve */
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+
+    /* Sombra média */
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.08);
+
+    /* Transição padrão */
+    --transition-default: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--text-light);
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+
+}
+
+.navbar-brand:hover {
+    color: var(--text-light);
+}
+
+.nav-link.active{
+    color: var(--secondary-color) !important;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.dashboard > * {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: var(--secondary-color) solid 1px;
+    box-shadow: var(--shadow-md);
+    background-color: var(--surface-color);
+    transition: 0.3s ease;
+}
+
+.dashboard > *:hover {
+    transform: scale(1.01);
+}
+
+[class^="col-"] { /*seletor de atribuito*/
+  grid-column: span 12; /* tudo ocupa a tela inteira */
+}
+
+#grafico-produtos {
+    max-height: 200px;
+}
+
+@media (min-width: 1024px) {
+  .col-1  { grid-column: span 1; }
+  .col-2  { grid-column: span 2; }
+  .col-3  { grid-column: span 3; }
+  .col-4  { grid-column: span 4; }
+  .col-5  { grid-column: span 5; }
+  .col-6  { grid-column: span 6; }
+  .col-7  { grid-column: span 7; }
+  .col-8  { grid-column: span 8; }
+  .col-9  { grid-column: span 9; }
+  .col-10 { grid-column: span 10; }
+  .col-11 { grid-column: span 11; }
+  .col-12 { grid-column: span 12; }
+}
+
+h1 {
+    margin: 2rem;
+}
