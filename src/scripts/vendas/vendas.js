@@ -16,10 +16,13 @@ const botaoLimparVenda = document.querySelector("#btn-limpar-venda");
 const botaoFinalizarVenda = document.querySelector("#btn-finalizar-venda");
 const modalAdicionarProduto = document.querySelector("#modal-adicionar-produto-venda");
 
+<<<<<<< HEAD
 window.addEventListener("stockcenter:storage-update", () => {
     carregarProdutosDisponiveis(selectProduto);
 });
 
+=======
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 formAdicionarProduto.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -53,10 +56,22 @@ botaoLimparVenda.addEventListener("click", () => {
 });
 
 botaoFinalizarVenda.addEventListener("click", () => {
+<<<<<<< HEAD
     if (finalizarVenda(itensVenda)) {
         carregarProdutosDisponiveis(selectProduto);
+=======
+    
+    if (finalizarVenda(itensVenda)) {
+        
+        carregarProdutosDisponiveis(selectProduto);
+        
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
     }
 });
 
 carregarProdutosDisponiveis(selectProduto);
+<<<<<<< HEAD
 renderizarItensVenda(itensVenda);
+=======
+renderizarItensVenda(itensVenda);
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a

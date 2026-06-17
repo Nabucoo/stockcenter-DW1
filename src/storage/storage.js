@@ -7,16 +7,31 @@ export class Storage {
         }
 
         if (!localStorage.getItem("produtos")) {
+<<<<<<< HEAD
             localStorage.setItem("produtos", JSON.stringify([]));
         }
 
         if (!localStorage.getItem("vendas")) {
             localStorage.setItem("vendas", JSON.stringify([]));
+=======
+            localStorage.setItem(
+                "produtos",
+                JSON.stringify([])
+            );
+        }
+
+        if (!localStorage.getItem("vendas")) {
+            localStorage.setItem(
+                "vendas",
+                JSON.stringify([])
+            );
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
         }
 
         Storage.instancia = this;
     }
 
+<<<<<<< HEAD
     notificarAtualizacao() {
         if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("stockcenter:storage-update"));
@@ -30,20 +45,41 @@ export class Storage {
 
     carregarProdutos() {
         return JSON.parse(localStorage.getItem("produtos") || "[]");
+=======
+    carregarProdutos() {
+        return JSON.parse(
+            localStorage.getItem("produtos")
+        );
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
     }
 
     adicionarProduto(produto) {
         const produtos = this.carregarProdutos();
+<<<<<<< HEAD
         produtos.push(produto);
         this.salvarProdutos(produtos);
+=======
+
+        produtos.push(produto);
+
+        localStorage.setItem(
+            "produtos",
+            JSON.stringify(produtos)
+        );
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
     }
 
     removerProduto(nome, quantidadeRemover) {
         const produtos = this.carregarProdutos();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
         const indice = produtos.findIndex(
             produto => produto.nome.toLowerCase() === nome.toLowerCase()
         );
 
+<<<<<<< HEAD
         if (indice === -1) {
             return;
         }
@@ -75,25 +111,51 @@ export class Storage {
 
         this.salvarProdutos(produtos);
         return true;
+=======
+        produtos[indice].quantidade -= quantidadeRemover;
+
+        if (produtos[indice].quantidade === 0) {
+            produtos.splice(indice, 1);
+        }
+
+        localStorage.setItem(
+            "produtos",
+            JSON.stringify(produtos)
+        );
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
     }
 
     editarProduto(nomeAntigo, nomeNovo, quantidadeNova, precoCompraNovo, precoVendaNovo, departamentoNovo) {
         const produtos = this.carregarProdutos();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
         const indice = produtos.findIndex(
             produto => produto.nome.toLowerCase() === nomeAntigo.toLowerCase()
         );
 
+<<<<<<< HEAD
         if (indice === -1) {
             return;
         }
 
+=======
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
         produtos[indice].nome = nomeNovo;
         produtos[indice].quantidade = quantidadeNova;
         produtos[indice].precoCompra = precoCompraNovo;
         produtos[indice].precoVenda = precoVendaNovo;
         produtos[indice].departamento = departamentoNovo;
 
+<<<<<<< HEAD
         this.salvarProdutos(produtos);
+=======
+        localStorage.setItem(
+            "produtos",
+            JSON.stringify(produtos)
+        );
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
     }
 
     buscarProduto(nome) {
@@ -102,16 +164,23 @@ export class Storage {
     }
 
     carregarVendas() {
+<<<<<<< HEAD
         return JSON.parse(localStorage.getItem("vendas") || "[]");
     }
 
     salvarVendas(vendas) {
         localStorage.setItem("vendas", JSON.stringify(vendas));
         this.notificarAtualizacao();
+=======
+        return JSON.parse(
+            localStorage.getItem("vendas")
+        );
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
     }
 
     adicionarVenda(venda) {
         const vendas = this.carregarVendas();
+<<<<<<< HEAD
         vendas.push(venda);
         this.salvarVendas(vendas);
     }
@@ -133,3 +202,14 @@ export class Storage {
         return true;
     }
 }
+=======
+
+        vendas.push(venda);
+
+        localStorage.setItem(
+            "vendas",
+            JSON.stringify(vendas)
+        );
+    }
+}
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a

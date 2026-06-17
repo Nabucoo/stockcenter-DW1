@@ -4,7 +4,10 @@ import { adicionarProduto, buscarProduto, editarProduto, removerProduto } from "
 import { renderizarProdutos } from "./renderizar.js";
 
 window.addEventListener("load", renderizarProdutos);
+<<<<<<< HEAD
 window.addEventListener("stockcenter:storage-update", renderizarProdutos);
+=======
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
 const storage = new Storage();
 
@@ -63,4 +66,10 @@ formEditar.addEventListener("submit", (e) => {
 formBuscar.addEventListener("submit", (e) => {
     e.preventDefault();
     buscarProduto(formBuscar);
+<<<<<<< HEAD
 })
+=======
+})
+
+
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a

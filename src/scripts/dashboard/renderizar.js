@@ -1,6 +1,7 @@
 import Chart from "chart.js/auto";
 import { Storage } from "../../storage/storage";
 
+<<<<<<< HEAD
 function carregarVendasAtivas() {
     const storage = new Storage();
     return storage.carregarVendas().filter(venda => venda.status !== "Cancelada");
@@ -8,6 +9,11 @@ function carregarVendasAtivas() {
 
 function renderizarticketMedio(ticketMedioDiv) {
     const vendas = carregarVendasAtivas();
+=======
+function renderizarticketMedio(ticketMedioDiv) {
+    const storage = new Storage();
+    const vendas = storage.carregarVendas();
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
         return;
@@ -29,7 +35,13 @@ function renderizarticketMedio(ticketMedioDiv) {
 }
 
 function renderizarProdutosmedia(produtosMediaDiv) {
+<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
+=======
+    const storage = new Storage();
+
+    const vendas = storage.carregarVendas();
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
         return;
@@ -53,7 +65,12 @@ function renderizarProdutosmedia(produtosMediaDiv) {
 }
 
 function renderizarFaturamentoBruto(faturamentoBrutoDiv) {
+<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
+=======
+    const storage = new Storage();
+    const vendas = storage.carregarVendas();
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
         return;
@@ -72,7 +89,12 @@ function renderizarFaturamentoBruto(faturamentoBrutoDiv) {
 }
 
 function renderizarVendasPorProduto(vendasPorProdutoDiv) {
+<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
+=======
+    const storage = new Storage();
+    const vendas = storage.carregarVendas();
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length === 0) {
         return;
@@ -122,7 +144,12 @@ function renderizarVendasPorProduto(vendasPorProdutoDiv) {
 }
 
 function renderizarLucro(lucroDiv) {
+<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
+=======
+    const storage = new Storage();
+    const vendas = storage.carregarVendas();
+>>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
         return;
