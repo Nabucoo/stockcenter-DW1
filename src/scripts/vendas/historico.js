@@ -53,7 +53,7 @@ function renderizarHistorico(vendas) {
     container.innerHTML = "";
 
     if (!vendas.length) {
-        container.innerHTML = '<p class="venda-vazia">Nenhuma venda registrada para o perÃ­odo selecionado.</p>';
+        container.innerHTML = '<p class="venda-vazia">Nenhuma venda registrada para o período selecionado.</p>';
         return;
     }
 
@@ -149,12 +149,12 @@ function abrirModalEdicao(venda) {
             const produto = storage.buscarProduto(nome.trim());
 
             if (!produto) {
-                erros.push(`Produto nÃ£o encontrado: ${nome}`);
+                erros.push(`Produto não encontrado: ${nome}`);
                 return;
             }
 
             if (!Number.isInteger(quantidade) || quantidade <= 0) {
-                erros.push(`Quantidade invÃ¡lida para ${nome}`);
+                erros.push(`Quantidade inválida para ${nome}`);
                 return;
             }
 
@@ -233,7 +233,7 @@ document.addEventListener("click", (event) => {
             return;
         }
 
-        const confirmarCancelamento = window.confirm("Deseja realmente cancelar esta venda? O estoque serÃ¡ atualizado.");
+        const confirmarCancelamento = window.confirm("Deseja realmente cancelar esta venda? O estoque será atualizado.");
 
         if (!confirmarCancelamento) {
             return;
