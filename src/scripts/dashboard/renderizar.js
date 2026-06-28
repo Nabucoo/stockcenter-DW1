@@ -1,7 +1,13 @@
 import Chart from "chart.js/auto";
 import { Storage } from "../../storage/storage";
 
-<<<<<<< HEAD
+function renderizarEstadoVazio(container, titulo, texto = "Sem dados") {
+    container.innerHTML = `
+        <h2>${titulo}</h2>
+        <p>${texto}</p>
+    `;
+}
+
 function carregarVendasAtivas() {
     const storage = new Storage();
     return storage.carregarVendas().filter(venda => venda.status !== "Cancelada");
@@ -9,13 +15,9 @@ function carregarVendasAtivas() {
 
 function renderizarticketMedio(ticketMedioDiv) {
     const vendas = carregarVendasAtivas();
-=======
-function renderizarticketMedio(ticketMedioDiv) {
-    const storage = new Storage();
-    const vendas = storage.carregarVendas();
->>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
+        renderizarEstadoVazio(ticketMedioDiv, "Ticket Medio", "R$ 0,00");
         return;
     }
 
@@ -35,15 +37,10 @@ function renderizarticketMedio(ticketMedioDiv) {
 }
 
 function renderizarProdutosmedia(produtosMediaDiv) {
-<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
-=======
-    const storage = new Storage();
-
-    const vendas = storage.carregarVendas();
->>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
+        renderizarEstadoVazio(produtosMediaDiv, "Media de produtos por compra", "0");
         return;
     }
 
@@ -65,14 +62,10 @@ function renderizarProdutosmedia(produtosMediaDiv) {
 }
 
 function renderizarFaturamentoBruto(faturamentoBrutoDiv) {
-<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
-=======
-    const storage = new Storage();
-    const vendas = storage.carregarVendas();
->>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
+        renderizarEstadoVazio(faturamentoBrutoDiv, "Faturamento Bruto", "R$ 0,00");
         return;
     }
 
@@ -89,14 +82,10 @@ function renderizarFaturamentoBruto(faturamentoBrutoDiv) {
 }
 
 function renderizarVendasPorProduto(vendasPorProdutoDiv) {
-<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
-=======
-    const storage = new Storage();
-    const vendas = storage.carregarVendas();
->>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length === 0) {
+        renderizarEstadoVazio(vendasPorProdutoDiv, "Vendas por Produto", "Sem vendas");
         return;
     }
 
@@ -128,7 +117,12 @@ function renderizarVendasPorProduto(vendasPorProdutoDiv) {
             labels,
             datasets: [{
                 label: "Quantidade Vendida",
-                data
+                data,
+                backgroundColor: "rgba(39, 211, 162, 0.78)",
+                borderColor: "rgba(183, 247, 216, 1)",
+                borderWidth: 1,
+                borderRadius: 10,
+                hoverBackgroundColor: "rgba(90, 169, 255, 0.9)"
             }]
         },
         options: {
@@ -138,20 +132,36 @@ function renderizarVendasPorProduto(vendasPorProdutoDiv) {
                 legend: {
                     display: false
                 }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: "rgba(247, 251, 255, 0.72)"
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: "rgba(247, 251, 255, 0.72)",
+                        precision: 0
+                    },
+                    grid: {
+                        color: "rgba(255, 255, 255, 0.08)"
+                    }
+                }
             }
         }
     });
 }
 
 function renderizarLucro(lucroDiv) {
-<<<<<<< HEAD
     const vendas = carregarVendasAtivas();
-=======
-    const storage = new Storage();
-    const vendas = storage.carregarVendas();
->>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
 
     if (vendas.length == 0) {
+        renderizarEstadoVazio(lucroDiv, "Lucro", "R$ 0,00");
         return;
     }
 

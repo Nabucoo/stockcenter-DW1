@@ -1,0 +1,12 @@
+:root {
+    --bg: #0b1020;
+    --panel: rgba(255, 255, 255, 0.08);
+    --panel-strong: rgba(255, 255, 255, 0.13);
+    --line: rgba(255, 255, 255, 0.14);
+    --text: #f7fbff;
+    --muted: #aab7c8;
+    --brand: #27d3a2;
+    --brand-2: #5aa9ff;
+    --danger: #ff6b8a;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}

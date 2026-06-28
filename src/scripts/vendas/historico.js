@@ -1,4 +1,4 @@
-import { Storage } from "../../storage/storage.js";
+﻿import { Storage } from "../../storage/storage.js";
 import { Venda } from "./venda.js";
 
 function formatarData(dataHora) {
@@ -17,9 +17,33 @@ function ordenarVendas(vendas) {
     return [...vendas].sort((a, b) => new Date(b.dataHora) - new Date(a.dataHora));
 }
 
-function renderizarHistorico() {
-    const storage = new Storage();
-    const vendas = ordenarVendas(storage.carregarVendas());
+function obterVendasFiltradasPorData(vendas) {
+    const dataInicialValor = document.querySelector("#data-inicial")?.value;
+    const dataFinalValor = document.querySelector("#data-final")?.value;
+
+    if (!dataInicialValor && !dataFinalValor) {
+        return vendas;
+    }
+
+    const dataInicial = dataInicialValor ? new Date(`${dataInicialValor}T00:00:00`) : null;
+    const dataFinal = dataFinalValor ? new Date(`${dataFinalValor}T23:59:59.999`) : null;
+
+    return vendas.filter(venda => {
+        const dataVenda = new Date(venda.dataHora);
+
+        if (dataInicial && dataVenda < dataInicial) {
+            return false;
+        }
+
+        if (dataFinal && dataVenda > dataFinal) {
+            return false;
+        }
+
+        return true;
+    });
+}
+
+function renderizarHistorico(vendas) {
     const container = document.querySelector("#historico-vendas-cards");
 
     if (!container) {
@@ -29,7 +53,7 @@ function renderizarHistorico() {
     container.innerHTML = "";
 
     if (!vendas.length) {
-        container.innerHTML = '<p class="venda-vazia">Nenhuma venda registrada.</p>';
+        container.innerHTML = '<p class="venda-vazia">Nenhuma venda registrada para o perÃ­odo selecionado.</p>';
         return;
     }
 
@@ -58,11 +82,11 @@ function renderizarHistorico() {
 
                 <div class="card-body d-flex justify-content-end gap-2">
                     <button type="button" class="btn-add editar-venda" data-venda='${JSON.stringify(venda)}' ${estaCancelada ? "disabled" : ""}>
-                        ✏️ Editar
+                        Editar
                     </button>
 
                     <button type="button" class="btn-sair cancelar-venda" data-venda-id="${venda.id}" ${estaCancelada ? "disabled" : ""}>
-                        ⛔ Cancelar
+                        Cancelar
                     </button>
                 </div>
             </div>
@@ -125,12 +149,12 @@ function abrirModalEdicao(venda) {
             const produto = storage.buscarProduto(nome.trim());
 
             if (!produto) {
-                erros.push(`Produto não encontrado: ${nome}`);
+                erros.push(`Produto nÃ£o encontrado: ${nome}`);
                 return;
             }
 
             if (!Number.isInteger(quantidade) || quantidade <= 0) {
-                erros.push(`Quantidade inválida para ${nome}`);
+                erros.push(`Quantidade invÃ¡lida para ${nome}`);
                 return;
             }
 
@@ -183,7 +207,7 @@ function abrirModalEdicao(venda) {
 
         storage.salvarProdutos(estoque);
         storage.atualizarVenda(vendaAtualizada);
-        renderizarHistorico();
+        atualizarHistorico();
         bootstrap.Modal.getInstance(document.getElementById("modal-editar-venda")).hide();
         document.body.removeChild(dialog);
         document.removeEventListener("submit", tratarSubmit);
@@ -209,7 +233,7 @@ document.addEventListener("click", (event) => {
             return;
         }
 
-        const confirmarCancelamento = window.confirm("Deseja realmente cancelar esta venda? O estoque será atualizado.");
+        const confirmarCancelamento = window.confirm("Deseja realmente cancelar esta venda? O estoque serÃ¡ atualizado.");
 
         if (!confirmarCancelamento) {
             return;
@@ -232,10 +256,35 @@ document.addEventListener("click", (event) => {
 
         storage.salvarProdutos(estoque);
         storage.salvarVendas(vendasAtualizadas);
-        renderizarHistorico();
+        atualizarHistorico();
         alert("Venda cancelada com sucesso.");
     }
 });
 
-window.addEventListener("stockcenter:storage-update", renderizarHistorico);
-renderizarHistorico();
+function atualizarHistorico() {
+    const storage = new Storage();
+    const vendasOrdenadas = ordenarVendas(storage.carregarVendas());
+    const vendasFiltradas = obterVendasFiltradasPorData(vendasOrdenadas);
+    renderizarHistorico(vendasFiltradas);
+}
+
+const formFiltroData = document.querySelector("#form-filtro-data");
+const botaoLimparFiltro = document.querySelector("#btn-limpar-filtro");
+
+if (formFiltroData) {
+    formFiltroData.addEventListener("submit", (event) => {
+        event.preventDefault();
+        atualizarHistorico();
+    });
+}
+
+if (botaoLimparFiltro) {
+    botaoLimparFiltro.addEventListener("click", () => {
+        document.querySelector("#data-inicial").value = "";
+        document.querySelector("#data-final").value = "";
+        atualizarHistorico();
+    });
+}
+
+window.addEventListener("stockcenter:storage-update", atualizarHistorico);
+atualizarHistorico();

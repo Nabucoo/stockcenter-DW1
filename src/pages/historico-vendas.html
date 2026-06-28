@@ -15,7 +15,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand d-flex align-items-center gap-2" href="../../index.html">
-                        <img src="../assets/logo.png" alt="Logo" width="100">
+                        <img src="../assets/logo-nav.png" alt="Logo" width="100">
                         <h1>StockCenter</h1>
                     </a>
 
@@ -40,6 +40,23 @@
             <div class="vendas-header">
                 <h1>Histórico de Vendas</h1>
             </div>
+
+            <section class="filtro-vendas mb-4">
+                <form id="form-filtro-data" class="d-flex flex-wrap gap-3 align-items-end">
+                    <div class="form-group">
+                        <label for="data-inicial" class="form-label">Data inicial</label>
+                        <input type="date" id="data-inicial" name="data-inicial" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-final" class="form-label">Data final</label>
+                        <input type="date" id="data-final" name="data-final" class="form-control" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                    <button type="button" id="btn-limpar-filtro" class="btn btn-secondary">Limpar</button>
+                </form>
+            </section>
 
             <section class="cards" id="historico-vendas-cards"></section>
         </main>

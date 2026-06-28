@@ -1,111 +1,231 @@
 :root {
-
-    /* Azul principal */
-    --primary-color: #1E293B;
-
-    /* Cor de destaque */
-    --secondary-color: #F59E0B;
-
-    /* Fundo da aplicação */
-    --background-color: #F8FAFC;
-
-    /* Fundo de cards */
-    --surface-color: #FFFFFF;
-
-    /* Texto principal */
-    --text-color: #0F172A;
-
-    /* Texto secundário */
-    --text-light: #FFFFFF;
-
-    /* Bordas */
-    --border-color: #E2E8F0;
-
-    /* Sombra leve */
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-
-    /* Sombra média */
-    --shadow-md: 0 4px 15px rgba(0,0,0,0.08);
-
-    /* Transição padrão */
-    --transition-default: 0.3s ease;
+    --bg: #0b1020;
+    --panel: rgba(255, 255, 255, 0.08);
+    --panel-strong: rgba(255, 255, 255, 0.13);
+    --line: rgba(255, 255, 255, 0.14);
+    --text: #f7fbff;
+    --muted: #aab7c8;
+    --brand: #27d3a2;
+    --brand-2: #5aa9ff;
+    --warning: #ffcc66;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+    --radius: 22px;
+    --transition: 180ms ease;
 }
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text);
+    font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 14% 6%, rgba(39, 211, 162, 0.28), transparent 28rem),
+        radial-gradient(circle at 88% 2%, rgba(90, 169, 255, 0.24), transparent 30rem),
+        linear-gradient(145deg, #08101f 0%, var(--bg) 48%, #111525 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 72%);
+}
+
+#app {
+    min-height: 100vh;
 }
 
 .navbar {
-    background-color: var(--primary-color);
+    margin: 18px auto 0;
+    width: min(1180px, calc(100% - 32px));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(8, 16, 31, 0.72);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(18px);
 }
 
-.navbar-brand, .nav-link {
-    color: var(--text-light);
-    transition: 0.3s ease;
+.navbar .container-fluid {
+    padding: 0.75rem 1rem;
+}
+
+.navbar-brand {
+    gap: 0.75rem !important;
+    color: var(--text);
+}
+
+.navbar-brand img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    padding: 5px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.navbar-brand h1 {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 800;
+}
+
+.navbar-toggler {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: none !important;
+}
+
+.navbar-nav {
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.nav-link {
+    margin: 0 0.1rem;
+    padding: 0.62rem 0.85rem !important;
+    border-radius: 999px;
+    color: rgba(247, 251, 255, 0.72) !important;
+    font-size: 0.92rem;
+    font-weight: 700;
+    transition: color var(--transition), background var(--transition), transform var(--transition);
 }
 
 .nav-link:hover {
-    color: var(--secondary-color);
-    transform: scale(1.05);
-
+    color: var(--text) !important;
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateY(-1px);
 }
 
-.navbar-brand:hover {
-    color: var(--text-light);
-}
-
-.nav-link.active{
-    color: var(--secondary-color) !important;
-}
-
-img {
-    width: 6rem;
-}
-
-.card {
-    background-color: var(--surface-color);
-    border-color: var(--border-color);
-    text-align: justify;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
-
-.card:hover {
-  
-  transform: translateY(-8px);
-  
-  
-  box-shadow: var(--shadow-md);
-  
-  
-  border-color: var(--secondary-color); 
+.nav-link.active {
+    color: #06131f !important;
+    background: linear-gradient(135deg, var(--brand), #b7f7d8);
 }
 
 main {
+    position: relative;
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 48px 0 58px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    place-items: stretch;
-    justify-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
 }
 
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Deixa o ponteiro do mouse como a mãozinha de clique */
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06)),
+        var(--panel);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    backdrop-filter: blur(16px);
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
 }
 
 .card:hover {
-  /* Levanta o card em 8px no eixo Y (para cima) */
-  transform: translateY(-8px);
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.3);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.075)),
+        var(--panel-strong);
+}
+
+.card-img-top {
+    height: 280px;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.02);
+}
+
+.card-body {
+    padding: 1.35rem;
+    background: transparent;
+}
+
+.card-text {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: left;
+}
+
+#estoque-card::after,
+#vendas-card::after,
+#dashboard-card::after {
+    display: block;
+    padding: 0 1.35rem 1.35rem;
+    color: var(--text);
+    font-size: 1.65rem;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+#estoque-card::after {
+    content: "Estoque inteligente";
+}
+
+#vendas-card::after {
+    content: "Vendas rapidas";
+}
+
+#dashboard-card::after {
+    content: "Indicadores claros";
+}
+
+@media (max-width: 991px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: auto;
+    }
+
+    .navbar-nav {
+        align-items: stretch;
+        padding-top: 0.75rem;
+    }
+
+    .nav-link {
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 620px) {
+    .navbar,
+    main {
+        width: min(100% - 20px, 1180px);
+    }
+
+    main {
+        padding-top: 34px;
+        gap: 12px;
+    }
+
+    .card-img-top {
+        height: 220px;
+    }
 }

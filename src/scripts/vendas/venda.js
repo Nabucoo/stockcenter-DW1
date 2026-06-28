@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function gerarIdVenda() {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let id = "";
@@ -20,11 +19,3 @@ export class Venda {
         this.status = status;
     }
 }
-=======
-export class Venda {
-    constructor(itens, total) {
-        this.itens = itens;
-        this.total = total;
-    }
-}
->>>>>>> 53f74548b92a7a2f75ceb56552becb855582376a
